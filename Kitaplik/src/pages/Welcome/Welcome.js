@@ -46,7 +46,6 @@ const Welcome = ({navigation}) => {
       {item.pagenumber===1?<Text style={styles.welcometext} >Bookshelter</Text>:null}
         <WelcomeMessage mysource={item.source} />
         <Text style={styles.description} >{item.description}</Text>
-       
       </View>
     </View>
   );
