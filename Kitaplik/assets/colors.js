@@ -1,6 +1,6 @@
 const colors = {
     darkgreen:'#051505',
-    pink:'#a045de',
+    pink:'#353533',
 }
 
 export default colors

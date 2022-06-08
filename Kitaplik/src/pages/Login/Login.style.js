@@ -3,12 +3,12 @@ import colors from "../../../assets/colors";
 
 export default StyleSheet.create({
     container:{
-        backgroundColor:'#a045de',
+        backgroundColor:colors.pink,
         flex:1,
     },
     header_container:{
-        backgroundColor:'white',
-        flex:2,
+        backgroundColor:'#EDEDED',
+        height:300,
         alignItems:'center',
         justifyContent:'center',
         borderBottomRightRadius:20,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     },
     email_text:{
         color:'white',
-        marginTop:60,
+        marginTop:40,
         fontWeight:'bold',
         marginLeft:50,
     },
@@ -42,7 +42,8 @@ export default StyleSheet.create({
         borderBottomWidth:1,
         paddingLeft:-2,
         borderBottomColor:'white',
-        marginRight:50
+        marginRight:50,
+        color:'white'
     },
     login_button:{
         backgroundColor:'white',
@@ -52,7 +53,8 @@ export default StyleSheet.create({
         padding:10,
         borderRadius:8,
         elevation:8,
-        alignItems:'center'
+        alignItems:'center',
+        marginBottom:20
     },
     button_text:{
         color:colors.pink,
@@ -100,8 +102,7 @@ export default StyleSheet.create({
       },
       line_container:{
           flexDirection:'row',
-          position:'absolute',
-          bottom:100,
+         marginBottom:20,
           width:'100%',
           alignItems:'center',
           paddingHorizontal:20,
@@ -113,24 +114,24 @@ export default StyleSheet.create({
           marginLeft:'5%'
       },
       google_button:{
-          position:'absolute',
-          bottom:30,
-          alignSelf:'center',
+         
           backgroundColor:'white',
           padding:10,
           flexDirection:'row',
           alignItems:'center',
-          justifyContent:'space-between',
-          width:'50%',
+          justifyContent:'space-around',
+          marginRight:50,
+          marginLeft:50,
           borderRadius:8,
           elevation:10
       },
       google_image:{
-          width:30,
-          height:30
+          width:22,
+          height:22
       },
       google_text:{
-          color:'black',
+          color:colors.pink,
           fontWeight:'bold',
+          fontSize:16
       }
 })

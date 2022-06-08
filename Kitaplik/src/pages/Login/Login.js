@@ -3,19 +3,42 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, useWindowDimensions,
 import styles from './Login.style'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import colors from "../../../assets/colors";
+import auth from '@react-native-firebase/auth'
 
-const data = [
-    {
-        page: 1,
-        button_text: 'Login'
-    },
-    {
-        page: 2,
-        button_text: 'Sign-up'
-    },
-]
 
-const Login = () => {
+
+const Login = ({ navigation }) => {
+    const data = [
+        {
+            page: 1,
+            button_text: 'Login',
+            login: async () => {
+                try {
+                    await auth().signInWithEmailAndPassword(email, password)
+                    navigation.navigate('HomeScreen')
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+        {
+            page: 2,
+            button_text: 'Sign-up',
+            login: async () => {
+                try {
+                    await auth().createUserWithEmailAndPassword(email, password)
+                    navigation.navigate('HomeScreen')
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+    ]
+
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [repassword, setRePassword] = useState('')
     const windowWidth = useWindowDimensions().width;
     const slider = createRef(null);
     const [sliderState, setSliderState] = useState({
@@ -41,16 +64,16 @@ const Login = () => {
 
     const switchPage = () => {
         slider.current.scrollToOffset({
-            offset:  sliderState.offset - windowWidth,
+            offset: sliderState.offset - windowWidth,
             animated: true,
-          }) 
+        })
     }
-    
+
     const switchPage2 = () => {
         slider.current.scrollToOffset({
-            offset:  sliderState.offset + windowWidth,
+            offset: sliderState.offset + windowWidth,
             animated: true,
-          }) 
+        })
     }
 
 
@@ -58,29 +81,43 @@ const Login = () => {
     const renderItem = ({ item }) => (
         <View style={[styles.body_container, { width: windowWidth }]} >
             <Text style={styles.email_text} >E-mail</Text>
-            <TextInput placeholder="your email..." placeholderTextColor='white' style={styles.input} />
-            
+            <TextInput
+                placeholder="your email..."
+                placeholderTextColor='white'
+                style={styles.input}
+                onChangeText={(text) => setEmail(text)}
+            />
+
             <Text style={[styles.email_text, { marginTop: 20 }]} >Password</Text>
-            <TextInput placeholder="your password..." placeholderTextColor='white' style={styles.input} />
-            
-            {item.page ==2 ? <><Text style={[styles.email_text,{marginTop:20}]} >Re-password</Text>
-            <TextInput placeholder="re-password..." placeholderTextColor='white' style={styles.input} /></> : null }
+            <TextInput
+                placeholder="your password..."
+                placeholderTextColor='white'
+                style={styles.input}
+                onChangeText={(text) => setPassword(text)}
+            />
+
+
+
             <TouchableOpacity>
-                {item.page==1 ?<Text style={[styles.email_text, { marginTop: 20, textDecorationLine: 'underline' }]} >Forgot password?</Text>:null}
+                {item.page == 1 ? <Text style={[styles.email_text, { marginTop: 20, textDecorationLine: 'underline' }]} >Forgot password?</Text> : null}
             </TouchableOpacity>
-            <TouchableOpacity style={styles.login_button} >
+
+            <TouchableOpacity
+                onPress={item.login}
+                style={styles.login_button} >
                 <Text style={styles.button_text} >{item.button_text}</Text>
             </TouchableOpacity>
-            {item.page==1 ? <View style={styles.line_container} >
-            <View style={styles.line_container1} ></View>
-            <Text style={styles.or_text} >or</Text>
-            <View style={styles.line_container1} ></View>
-            </View>:null}
-            {item.page==1 ? 
-            <TouchableOpacity style={styles.google_button} >
-                <Image source={{uri:'https://freesvg.org/img/1534129544.png'}} style={styles.google_image} />
-                <Text style={styles.google_text} >Login With Google</Text>
-            </TouchableOpacity>:null}
+
+            {item.page == 2 ? <View style={styles.line_container} >
+                <View style={styles.line_container1} ></View>
+                <Text style={styles.or_text} >or</Text>
+                <View style={styles.line_container1} ></View>
+            </View> : null}
+            {item.page == 2 ?
+                <TouchableOpacity style={styles.google_button} >
+                    <Image source={{ uri: 'https://freesvg.org/img/1534129544.png' }} style={styles.google_image} />
+                    <Text style={styles.google_text} >Sign In With Google</Text>
+                </TouchableOpacity> : null}
         </View>
     )
     return (
@@ -89,10 +126,10 @@ const Login = () => {
                 <FontAwesome5 name="book-reader" size={100} color={colors.pink} />
                 <View style={styles.header_inner_container} >
                     <TouchableOpacity onPress={switchPage} >
-                    <Text style={styles.login_text}  >Login</Text>
+                        <Text style={styles.login_text}  >Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={switchPage2} >
-                    <Text style={styles.login_text}> Sign-up</Text>
+                        <Text style={styles.login_text}> Sign-up</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.controls} >
