@@ -91,4 +91,46 @@ export default StyleSheet.create({
         justifyContent: 'center',
         padding:10
       },
+      line_container1:{
+          height:1,
+          borderWidth:1,
+          width:'40%',
+          borderColor:'white',
+          
+      },
+      line_container:{
+          flexDirection:'row',
+          position:'absolute',
+          bottom:100,
+          width:'100%',
+          alignItems:'center',
+          paddingHorizontal:20,
+          justifyContent:'center'
+      },
+      or_text:{
+          color:'white',
+          marginRight:'5%',
+          marginLeft:'5%'
+      },
+      google_button:{
+          position:'absolute',
+          bottom:30,
+          alignSelf:'center',
+          backgroundColor:'white',
+          padding:10,
+          flexDirection:'row',
+          alignItems:'center',
+          justifyContent:'space-between',
+          width:'50%',
+          borderRadius:8,
+          elevation:10
+      },
+      google_image:{
+          width:30,
+          height:30
+      },
+      google_text:{
+          color:'black',
+          fontWeight:'bold',
+      }
 })
