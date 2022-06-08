@@ -4,7 +4,8 @@ import colors from "../../../assets/colors";
 export default StyleSheet.create({
     container:{
         backgroundColor:colors.darkwhite,
-        flex:1
+        flex:1,
+        paddingBottom:100
     },
     header_text:{
         color:'black',
@@ -23,17 +24,18 @@ export default StyleSheet.create({
         marginTop:10,
         borderRadius:8,
         alignItems:'center',
-        justifyContent:'space-between'
+      
     },
     flatlist_container:{
         backgroundColor:'white',
         elevation:20,
         marginHorizontal:10,
-        borderRadius:8
+        borderRadius:8,
+        
     },
     karlmarx_text:{
         marginLeft:10,
-        marginTop:50,
+        marginTop:40,
         marginBottom:10,
         fontWeight:'bold',
         fontSize:16
