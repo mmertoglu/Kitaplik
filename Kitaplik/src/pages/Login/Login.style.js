@@ -7,7 +7,7 @@ export default StyleSheet.create({
         flex:1,
     },
     header_container:{
-        backgroundColor:'#EDEDED',
+        backgroundColor:colors.darkwhite,
         height:300,
         alignItems:'center',
         justifyContent:'center',
