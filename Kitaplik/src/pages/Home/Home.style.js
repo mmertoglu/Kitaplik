@@ -5,7 +5,7 @@ export default StyleSheet.create({
     container:{
         backgroundColor:colors.darkwhite,
         flex:1,
-        paddingBottom:100
+        
     },
     header_text:{
         color:'black',
@@ -31,11 +31,13 @@ export default StyleSheet.create({
         elevation:20,
         marginHorizontal:10,
         borderRadius:8,
+        flex:1,
+        marginBottom:20
         
     },
     karlmarx_text:{
         marginLeft:10,
-        marginTop:40,
+        marginTop:20,
         marginBottom:10,
         fontWeight:'bold',
         fontSize:16

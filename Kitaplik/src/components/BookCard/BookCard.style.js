@@ -4,7 +4,6 @@ import colors from "../../../assets/colors";
 export default StyleSheet.create({
     container:{
         backgroundColor:'white',
-        
         margin:5,
         padding:10,
         borderRightWidth:0.4,
