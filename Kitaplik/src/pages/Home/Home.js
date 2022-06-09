@@ -11,7 +11,7 @@ const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psycho
 const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const Philosophy = 'https://www.googleapis.com/books/v1/volumes?q=subject:philosophy&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const History = 'https://www.googleapis.com/books/v1/volumes?q=subject:history&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
-const Home = () => {
+const Home = ({navigation}) => {
     const [politicalData, setPoliticalData] = useState([])
     const [philosophyData, setPhilosophyData] = useState([])
     const [historyData, setHistoryData] = useState([])
@@ -58,6 +58,10 @@ const Home = () => {
        } catch (error) {
            console.log(error)
        }
+    }
+
+    const goBookDetail = (book) => {
+        navigation.navigate('BookDetailScreen',{book})
     }
 
     const renderItem = ({ item }) => <BookCard book={item} />
@@ -109,7 +113,7 @@ const Home = () => {
         style={{marginTop:20}}
         numColumns={3}
         data={resultData.items}
-        renderItem={({item}) => <SearchedBookCard book={item} />}
+        renderItem={({item}) => <SearchedBookCard book={item} onPress={goBookDetail} />}
         />  
         }
           

@@ -6,6 +6,7 @@ import { LogBox } from 'react-native';
 import Home from './src/pages/Home/Home';
 import Login from './src/pages/Login/Login';
 import Welcome from './src/pages/Welcome/Welcome';
+import BookDetail from './src/pages/BookDetail/BookDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ const App = () => {
       <Stack.Screen name='HomeScreen' component={Home} />
         <Stack.Screen name='WelcomeScreen' component={Welcome} />
         <Stack.Screen name='LoginScreen' component={Login} />
-       
+        <Stack.Screen name='BookDetailScreen' component={BookDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   )

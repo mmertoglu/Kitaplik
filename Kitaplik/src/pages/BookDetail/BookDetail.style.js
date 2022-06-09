@@ -1,0 +1,57 @@
+import { Dimensions, StyleSheet } from "react-native";
+
+export default StyleSheet.create({
+    container:{
+        flex:1
+    },
+    image:{
+        width:Dimensions.get('screen').width/3,
+        height:Dimensions.get('screen').height/5
+    },
+    image_container:{
+        backgroundColor:'white',
+        padding:10,
+        borderBottomLeftRadius:20,
+        borderBottomRightRadius:20,
+        elevation:10,
+        marginBottom:10,
+        flexDirection:'row',
+        justifyContent:'space-around'
+    },
+    info_container:{
+        backgroundColor:'white',
+        padding:5,
+        elevation:10,
+        borderTopLeftRadius:20,
+        borderBottomRightRadius:20,
+        marginBottom:10,
+        alignItems:'center'
+    },
+    info_text:{
+        marginTop:10,
+        fontWeight:'bold'
+    },
+    favourite_container:{
+        backgroundColor:'white',
+        borderTopRightRadius:20,
+        borderBottomLeftRadius:20,
+        padding:5,
+        flexDirection:'row',
+        justifyContent:'space-around',
+        marginBottom:10,
+        marginTop:10
+    },
+    favourite_inner_container:{
+        alignItems:'center'
+    },
+    share_text:{
+        color:'tomato'
+    },
+    book_description_container:{
+        backgroundColor:'white',
+        padding:10,
+        elevation:10,
+        borderRadius:20,
+        marginBottom:10
+    }
+})

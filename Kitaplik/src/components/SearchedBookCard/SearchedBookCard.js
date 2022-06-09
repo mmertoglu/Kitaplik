@@ -1,9 +1,9 @@
 import React from "react";
-import {View,Text, Image} from 'react-native'
+import {View,Text, Image, TouchableOpacity} from 'react-native'
 import styles from './SearchedBookCard.style'
-const SearchedBookCard = ({book}) => {
+const SearchedBookCard = ({book,onPress}) => {
     return(
-        <View style={styles.container} >
+        <TouchableOpacity style={styles.container} onPress={() =>onPress(book)} >
             {book.volumeInfo.imageLinks != undefined ?<Image 
             resizeMode='stretch'
             source={{uri:book.volumeInfo.imageLinks.thumbnail}} 
@@ -12,7 +12,7 @@ const SearchedBookCard = ({book}) => {
             style={styles.image} />
             }
             <Text numberOfLines={2} style={styles.book_text} >{book.volumeInfo.title}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 export default SearchedBookCard
