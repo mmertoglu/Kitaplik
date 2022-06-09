@@ -5,6 +5,7 @@ import styles from './Home.style'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import axios from 'axios'
 import BookCard from "../../components/BookCard/BookCard";
+import SearchedBookCard from "../../components/SearchedBookCard/SearchedBookCard";
 
 const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psychology&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
@@ -15,6 +16,9 @@ const Home = () => {
     const [philosophyData, setPhilosophyData] = useState([])
     const [historyData, setHistoryData] = useState([])
     const [psychologyData,setPsychologyData] = useState([])
+    const [resultData,setResultData] = useState([])
+    const [search,setSearch] = useState('')
+    const result = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk`
 
     useEffect(() => {
         axios.get(Political).then((response) => {
@@ -38,6 +42,23 @@ const Home = () => {
         })
 
     }, [])
+    const handleSearch = async (text) => {
+       try {
+        await setSearch(text)
+        axios.get(result).then((response) => {
+            setResultData(response.data)
+            console.log(resultData)
+        })
+
+        const filtered = resultData.filter((book) => {
+            const current = book.items.volumeInfo.title
+            return current.indexOf(text)> -1
+        })
+        text?setResultData(filtered):setResultData([])
+       } catch (error) {
+           console.log(error)
+       }
+    }
 
     const renderItem = ({ item }) => <BookCard book={item} />
     return (
@@ -46,9 +67,12 @@ const Home = () => {
             <Text style={styles.header_text} >Bookshelter</Text>
             <View style={styles.input_container} >
                 <EvilIcons name="search" color='black' size={30} />
-                <TextInput placeholder="search for books..." />
+                <TextInput 
+                style={{width:280}}
+                value={search}
+                autoCapitalize='none' placeholder="search for books..." onChangeText={handleSearch} />
             </View>
-            <Text style={styles.karlmarx_text} >Political</Text>
+          {!search? <><Text style={styles.karlmarx_text} >Political</Text>
             <View style={styles.flatlist_container} >
                 <FlatList
                     horizontal
@@ -79,7 +103,16 @@ const Home = () => {
                     data={psychologyData.items}
                     renderItem={renderItem}
                 />
-            </View>
+            </View></>
+        :  
+        <FlatList
+        style={{marginTop:20}}
+        numColumns={3}
+        data={resultData.items}
+        renderItem={({item}) => <SearchedBookCard book={item} />}
+        />  
+        }
+          
         </ScrollView>
     )
 }

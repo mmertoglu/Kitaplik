@@ -7,7 +7,8 @@ export default StyleSheet.create({
         margin:5,
         padding:10,
         borderRightWidth:0.4,
-        borderRightColor:colors.darkgreen
+        borderRightColor:colors.darkgreen,
+        
     },
     image:{
         height:80,
