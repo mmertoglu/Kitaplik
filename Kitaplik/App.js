@@ -35,7 +35,9 @@ const App = () => {
          tabBarInactiveTintColor: 'gray',
          headerShown:false,
          tabBarActiveBackgroundColor:'white',
-         tabBarStyle:{backgroundColor:'white'}
+         tabBarStyle:{backgroundColor:'white'},
+         tabBarHideOnKeyboard:true
+         
          
     })
         
