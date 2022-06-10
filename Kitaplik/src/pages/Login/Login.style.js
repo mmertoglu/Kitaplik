@@ -3,7 +3,7 @@ import colors from "../../../assets/colors";
 
 export default StyleSheet.create({
     container:{
-        backgroundColor:colors.pink,
+        backgroundColor:'white',
         flex:1,
     },
     header_container:{
@@ -32,7 +32,7 @@ export default StyleSheet.create({
         color:'black'
     },
     email_text:{
-        color:'white',
+        color:'black',
         marginTop:40,
         fontWeight:'bold',
         marginLeft:50,
@@ -41,12 +41,12 @@ export default StyleSheet.create({
         marginLeft:50,
         borderBottomWidth:1,
         paddingLeft:-2,
-        borderBottomColor:'white',
+        borderBottomColor:'black',
         marginRight:50,
-        color:'white'
+        color:'black'
     },
     login_button:{
-        backgroundColor:'white',
+        backgroundColor:'tomato',
         marginLeft:50,
         marginRight:50,
         marginTop:50,
@@ -57,13 +57,13 @@ export default StyleSheet.create({
         marginBottom:20
     },
     button_text:{
-        color:colors.pink,
+        color:'white',
         fontSize:16,
         fontWeight:'bold'
     },
     dotActive:{
         
-        backgroundColor:colors.pink
+        backgroundColor:'tomato'
     },
     dot: {
         width: 80,
@@ -97,7 +97,7 @@ export default StyleSheet.create({
           height:1,
           borderWidth:1,
           width:'40%',
-          borderColor:'white',
+          borderColor:'black',
           
       },
       line_container:{
@@ -109,7 +109,7 @@ export default StyleSheet.create({
           justifyContent:'center'
       },
       or_text:{
-          color:'white',
+          color:'black',
           marginRight:'5%',
           marginLeft:'5%'
       },
