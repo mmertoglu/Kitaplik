@@ -64,7 +64,7 @@ const Home = ({navigation}) => {
         navigation.navigate('BookDetailScreen',{book})
     }
 
-    const renderItem = ({ item }) => <BookCard book={item} />
+    const renderItem = ({ item }) => <BookCard book={item} handleDetail={goBookDetail} />
     return (
         <ScrollView style={styles.container} >
             <StatusBar backgroundColor={colors.darkwhite} />

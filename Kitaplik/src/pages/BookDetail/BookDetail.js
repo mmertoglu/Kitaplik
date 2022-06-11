@@ -1,9 +1,10 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useRef} from "react";
 import {View,Text,Image, StatusBar, ScrollView, TouchableOpacity} from 'react-native'
 import styles from './BookDetail.style'
 import colors from "../../../assets/colors";
 import Entypo from 'react-native-vector-icons/Entypo'
 const BookDetail = ({route}) => {
+    const scrollViewRef = useRef();
     const [numberLines,setNumberLines] = useState(5)
     const {book} = route.params;
     return(
@@ -18,7 +19,9 @@ const BookDetail = ({route}) => {
             style={styles.image} />
             }
             </View>
-            <ScrollView>
+            <ScrollView ref={scrollViewRef}
+             onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+            >
             <View style={styles.info_container} >
                 <Text style={[styles.info_text,{color:'tomato'}]} >{book.volumeInfo.authors[0] ?  book.volumeInfo.authors[0] : null} {book.volumeInfo.authors[1] ?  book.volumeInfo.authors[1] : null}</Text>
                 <Text style={[styles.info_text,{color:'black'}]} >{book.volumeInfo.title}</Text>
@@ -39,7 +42,7 @@ const BookDetail = ({route}) => {
                 <Text numberOfLines={numberLines} >{book.volumeInfo.description}</Text>
             </View>
             <TouchableOpacity onPress={() =>  numberLines==5? setNumberLines(40):setNumberLines(5)} style={{alignSelf:'center'}}>
-                <Text>{ numberLines==5 ? 'Show More' : 'Show Less'}</Text>
+                <Text style={styles.show_more_text} >{ numberLines==5 ? 'Show More' : 'Show Less'}</Text>
             </TouchableOpacity>
             </ScrollView>
         </View>

@@ -53,5 +53,8 @@ export default StyleSheet.create({
         elevation:10,
         borderRadius:20,
         marginBottom:10
+    },
+    show_more_text:{
+        marginBottom:20
     }
 })
