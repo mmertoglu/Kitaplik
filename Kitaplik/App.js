@@ -9,6 +9,7 @@ import Login from './src/pages/Login/Login';
 import Welcome from './src/pages/Welcome/Welcome';
 import BookDetail from './src/pages/BookDetail/BookDetail';
 import Profile from './src/pages/Profile/Profile';
+import Favourites from './src/pages/Favourites/Favourites';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +30,9 @@ const App = () => {
             if (route.name==='Profile') {
                 iconName='user'
             }
+            if(route.name==='Favourites') {
+              iconName='heart'
+            }
             return <FontAwesome name={iconName} color={color} size={24} />
         },
         tabBarActiveTintColor: 'tomato',
@@ -44,6 +48,7 @@ const App = () => {
     }
       >
         <Tab.Screen name='Home' component={Home} />
+        <Tab.Screen name='Favourites' component={Favourites} />
         <Tab.Screen name='Profile' component={Profile} />
       </Tab.Navigator>
     )
@@ -51,8 +56,8 @@ const App = () => {
   return(
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}} >
-        <Stack.Screen name='WelcomeScreen' component={Welcome} />
       <Stack.Screen name='HomeScreen' component={TabStack} />
+        <Stack.Screen name='WelcomeScreen' component={Welcome} />
         <Stack.Screen name='LoginScreen' component={Login} />
         <Stack.Screen name='BookDetailScreen' component={BookDetail} />
       </Stack.Navigator>

@@ -8,11 +8,12 @@ export default StyleSheet.create({
         
     },
     header_text:{
-        color:'black',
+        color:'tomato',
         alignSelf:'center',
         fontSize:24,
         marginTop:20,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        
     },
     input_container:{
         flexDirection:'row',
