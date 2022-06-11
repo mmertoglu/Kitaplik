@@ -3,14 +3,19 @@ import {View,Text,Image, StatusBar, ScrollView, TouchableOpacity} from 'react-na
 import styles from './BookDetail.style'
 import colors from "../../../assets/colors";
 import Entypo from 'react-native-vector-icons/Entypo'
-const BookDetail = ({route}) => {
+import IonIcons from 'react-native-vector-icons/Ionicons'
+const BookDetail = ({route,navigation}) => {
     const scrollViewRef = useRef();
     const [numberLines,setNumberLines] = useState(5)
     const {book} = route.params;
     return(
-        <View style={styles.container} >
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.icon_container}>
+            <IonIcons name="arrow-back" color={'black'} size={30} />
+            </TouchableOpacity>
             <StatusBar backgroundColor={'white'} />
             <View style={styles.image_container} >
+            
             {book.volumeInfo.imageLinks != undefined ?<Image 
             resizeMode='contain'
             source={{uri:book.volumeInfo.imageLinks.thumbnail}} 

@@ -56,5 +56,12 @@ export default StyleSheet.create({
     },
     show_more_text:{
         marginBottom:20
+    },
+    icon_container:{
+        backgroundColor:'white',
+        position:'absolute',
+        top:20,
+        zIndex:1,
+        left:20
     }
 })
