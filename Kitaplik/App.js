@@ -10,6 +10,7 @@ import Welcome from './src/pages/Welcome/Welcome';
 import BookDetail from './src/pages/BookDetail/BookDetail';
 import Profile from './src/pages/Profile/Profile';
 import Favourites from './src/pages/Favourites/Favourites';
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,6 +58,7 @@ const App = () => {
         <Stack.Screen name='LoginScreen' component={Login} />
         <Stack.Screen name='BookDetailScreen' component={BookDetail} />
       </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
   )
 }
