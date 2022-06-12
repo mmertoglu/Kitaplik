@@ -5,7 +5,7 @@ import database from '@react-native-firebase/database'
 import ParseContent from '../../utils/ParseContent'
 import FavouriteCard from "../../components/FavouriteCard/FavouriteCard";
 
-const Favourites = () => {
+const Favourites = ({navigation}) => {
     const [favouritesList,setFavouritesList] = useState([])
     const currentUser = auth().currentUser.email.split('@',1).toString();
     useEffect(()=>{
@@ -15,8 +15,11 @@ const Favourites = () => {
             setFavouritesList(ParsedData)
         })
     },[])
+    const handleDetail = (book) => {
+        navigation.navigate('BookDetailScreen',{book})
+    }
 
-    const renderItem = ({item}) => <FavouriteCard book={item} />
+    const renderItem = ({item}) => <FavouriteCard book={item} handleDetail={handleDetail} />
     return(
         <View>
             <Text 
