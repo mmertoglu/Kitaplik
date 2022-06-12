@@ -3,11 +3,36 @@ import {View,Text,Image, StatusBar, ScrollView, TouchableOpacity} from 'react-na
 import styles from './BookDetail.style'
 import colors from "../../../assets/colors";
 import Entypo from 'react-native-vector-icons/Entypo'
+import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import IonIcons from 'react-native-vector-icons/Ionicons'
+import auth from '@react-native-firebase/auth'
+import database from '@react-native-firebase/database'
+import {showMessage} from 'react-native-flash-message'
 const BookDetail = ({route,navigation}) => {
+    const [isFavourite,setIsFavourite] = useState(false)
     const scrollViewRef = useRef();
     const [numberLines,setNumberLines] = useState(5)
     const {book} = route.params;
+    const currentUser = auth().currentUser.email.split('@',1).toString();
+    const handleFavourite = () => {
+       if (isFavourite==false) {
+        database().ref('users/'+currentUser+'/Favourites/'+book.id).set(book)
+        setIsFavourite(!isFavourite)
+        showMessage({
+            message:'You have successfully added to favorites',
+            type:'success'
+        })
+       } else {
+        database().ref('users/'+currentUser+'/Favourites/'+book.id).remove()
+        setIsFavourite(!isFavourite)
+        showMessage({
+            message:'Book removed from favorites',
+            type:'danger'
+        })
+       }
+    }
+    console.log(book.volumeInfo.id)
+
     return(
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.icon_container}>
@@ -32,14 +57,14 @@ const BookDetail = ({route,navigation}) => {
                 <Text style={[styles.info_text,{color:'black'}]} >{book.volumeInfo.title}</Text>
             </View>
             <View style={styles.favourite_container} >
-                <View style={styles.favourite_inner_container} >
+                <TouchableOpacity style={styles.favourite_inner_container} >
                     <Text style={styles.share_text} >Share</Text>
                     <Entypo name="share" size={24} color='black' />
-                </View>
-                <View style={styles.favourite_inner_container} >
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleFavourite} style={styles.favourite_inner_container} >
                     <Text style={styles.share_text} >Add Favourites</Text>
-                    <Entypo name="heart-outlined" size={24} color='black' />
-                </View>
+                    <FontAwesome name="heart" size={24} color='black' solid={isFavourite}  />
+                </TouchableOpacity>
             </View>
             <View style={styles.book_description_container} >
                 <Text style={{color:'black',fontSize:16}} >Description</Text>

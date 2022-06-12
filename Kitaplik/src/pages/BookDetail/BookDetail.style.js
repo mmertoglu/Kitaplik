@@ -39,7 +39,6 @@ export default StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-around',
         marginBottom:10,
-        marginTop:10
     },
     favourite_inner_container:{
         alignItems:'center'
