@@ -40,12 +40,8 @@ const App = () => {
          headerShown:false,
          tabBarActiveBackgroundColor:'white',
          tabBarStyle:{backgroundColor:'white'},
-         tabBarHideOnKeyboard:true
-         
-         
-    })
-        
-    }
+         tabBarHideOnKeyboard:true  
+    }) }
       >
         <Tab.Screen name='Home' component={Home} />
         <Tab.Screen name='Favourites' component={Favourites} />
@@ -56,8 +52,8 @@ const App = () => {
   return(
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}} >
-      <Stack.Screen name='HomeScreen' component={TabStack} />
         <Stack.Screen name='WelcomeScreen' component={Welcome} />
+      <Stack.Screen name='HomeScreen' component={TabStack} />
         <Stack.Screen name='LoginScreen' component={Login} />
         <Stack.Screen name='BookDetailScreen' component={BookDetail} />
       </Stack.Navigator>

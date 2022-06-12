@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StatusBar, TextInput, FlatList, ScrollView } from 'react-native'
+import { View, Text, StatusBar, TextInput, FlatList, ScrollView,TouchableOpacity } from 'react-native'
 import colors from "../../../assets/colors";
 import styles from './Home.style'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import axios from 'axios'
 import BookCard from "../../components/BookCard/BookCard";
 import SearchedBookCard from "../../components/SearchedBookCard/SearchedBookCard";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psychology&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
@@ -63,10 +64,17 @@ const Home = ({navigation}) => {
     const goBookDetail = (book) => {
         navigation.navigate('BookDetailScreen',{book})
     }
+    const cikisyap = () => {
+        GoogleSignin.signOut();
+        navigation.navigate('LoginScreen')
+    }
 
     const renderItem = ({ item }) => <BookCard book={item} handleDetail={goBookDetail} />
     return (
         <ScrollView style={styles.container} >
+             <TouchableOpacity onPress={cikisyap} style={{backgroundColor:'yellow'}}>
+                <Text>Çıkış Yap</Text>
+            </TouchableOpacity>
             <StatusBar backgroundColor={colors.darkwhite} />
             <Text style={styles.header_text} >Bookshelter</Text>
             <View style={styles.input_container} >

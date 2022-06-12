@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "771162241934-q2cu3p7h8l15k1bds0cvgvhjtnq24brc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kitaplik",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "771162241934-o1fb1tpko8up0077t3s8ffc486qsnt62.apps.googleusercontent.com",
           "client_type": 3
         }

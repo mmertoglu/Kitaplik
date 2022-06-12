@@ -4,10 +4,15 @@ import styles from './Login.style'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import colors from "../../../assets/colors";
 import auth from '@react-native-firebase/auth'
-
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 const Login = ({ navigation }) => {
+
+    GoogleSignin.configure({
+        webClientId: '771162241934-o1fb1tpko8up0077t3s8ffc486qsnt62.apps.googleusercontent.com',
+      });
+
     const data = [
         {
             page: 1,
@@ -75,6 +80,17 @@ const Login = ({ navigation }) => {
             animated: true,
         })
     }
+    async function onGoogleButtonPress() {
+        try {
+        const { idToken } = await GoogleSignin.signIn();
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+        navigation.navigate('HomeScreen')
+        return auth().signInWithCredential(googleCredential);
+            
+        } catch (error) {
+            console.log(error)
+        }
+      }
 
 
 
@@ -114,7 +130,7 @@ const Login = ({ navigation }) => {
                 <View style={styles.line_container1} ></View>
             </View> : null}
             {item.page == 2 ?
-                <TouchableOpacity style={styles.google_button} >
+                <TouchableOpacity onPress={onGoogleButtonPress} style={styles.google_button} >
                     <Image source={{ uri: 'https://freesvg.org/img/1534129544.png' }} style={styles.google_image} />
                     <Text style={styles.google_text} >Sign In With Google</Text>
                 </TouchableOpacity> : null}
