@@ -8,8 +8,9 @@ import FavouriteCard from "../../components/FavouriteCard/FavouriteCard";
 const Favourites = ({navigation}) => {
     const [favouritesList,setFavouritesList] = useState([])
     const currentUser = auth().currentUser.email.split('@',1).toString();
+    const newCurrent = currentUser.replace('.','')
     useEffect(()=>{
-        database().ref('users/'+currentUser+'/Favourites').on('value', snapshot => {
+        database().ref('users/'+newCurrent+'/Favourites').on('value', snapshot => {
             const newContentData = snapshot.val();
             const ParsedData = ParseContent(newContentData)
             setFavouritesList(ParsedData)

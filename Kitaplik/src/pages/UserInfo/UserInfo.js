@@ -10,12 +10,15 @@ const UserInfo = ({navigation}) => {
     const [name,setName] = useState('')
     const [age,setAge] = useState()
     const currentUser = auth().currentUser.email.split('@',1).toString();
+    const newCurrent = currentUser.replace('.','')
+    console.log(newCurrent)
     const handleUpdateProfile = async () => {
         const userInfo = {
             username : name,
-            age:age
+            age:age,
+            image:'https://cdn-icons-png.flaticon.com/512/149/149071.png'
         }
-       await database().ref('users/'+currentUser+'/userInfo').set(userInfo)
+       await database().ref('users/'+newCurrent+'/userInfo').set(userInfo)
         navigation.navigate('HomeScreen')
     }
     return(

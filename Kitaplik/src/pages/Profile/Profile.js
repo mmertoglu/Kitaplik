@@ -8,12 +8,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const Profile = () => {
     const [userData,setUserData] = useState([])
     const currentUser = auth().currentUser.email.split('@',1).toString();
-    const [image,setImage] = useState('https://cdn-icons-png.flaticon.com/512/149/149071.png')
+    const newCurrent = currentUser.split('.',2).toString()
+    const [image,setImage] = useState('')
 
     useEffect(()=> {
-        database().ref('users/'+currentUser+'/userInfo').on('value',snapshot => {
+        database().ref('users/'+newCurrent+'/userInfo').on('value',snapshot => {
             setUserData(snapshot.val())
-        }) 
+        })
+        
     },[])
 
     const ChangePhoto = () => {
@@ -33,8 +35,7 @@ const Profile = () => {
            console.log(errorCode0)
        } else {
         const path= response.assets[0].uri
-        setImage(path)
-        database().ref('users/'+currentUser+'/userInfo/image').set(image)
+        database().ref('users/'+newCurrent+'/userInfo/image').set(path)
        }
        })
     }
@@ -42,7 +43,8 @@ const Profile = () => {
         <View style={styles.container} >
            <StatusBar backgroundColor='tomato' /> 
             <View style={styles.header_container} ></View>
-            <Image source={{ uri: userData.image ? userData.image : image }} style={styles.image} />
+            <Image source={{ uri: userData.image && userData.image}} 
+            style={styles.image} />
             <TouchableOpacity 
             onPress={ChangePhoto}
             style={styles.icon_container} >
