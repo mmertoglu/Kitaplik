@@ -62,7 +62,6 @@ export default StyleSheet.create({
         fontWeight:'bold'
     },
     dotActive:{
-        
         backgroundColor:'tomato'
     },
     dot: {

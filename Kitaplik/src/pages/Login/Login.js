@@ -92,8 +92,6 @@ const Login = ({ navigation }) => {
         }
       }
 
-
-
     const renderItem = ({ item }) => (
         <View style={[styles.body_container, { width: windowWidth }]} >
             <Text style={styles.email_text} >E-mail</Text>
@@ -103,7 +101,6 @@ const Login = ({ navigation }) => {
                 style={styles.input}
                 onChangeText={(text) => setEmail(text)}
             />
-
             <Text style={[styles.email_text, { marginTop: 20 }]} >Password</Text>
             <TextInput
                 placeholder="your password..."
@@ -111,9 +108,6 @@ const Login = ({ navigation }) => {
                 style={styles.input}
                 onChangeText={(text) => setPassword(text)}
             />
-
-
-
             <TouchableOpacity>
                 {item.page == 1 ? <Text style={[styles.email_text, { marginTop: 20, textDecorationLine: 'underline' }]} >Forgot password?</Text> : null}
             </TouchableOpacity>
@@ -150,10 +144,8 @@ const Login = ({ navigation }) => {
                 </View>
                 <View style={styles.controls} >
                     {dots()}
-
                 </View>
             </View>
-
             <FlatList
                 data={data}
                 renderItem={renderItem}
