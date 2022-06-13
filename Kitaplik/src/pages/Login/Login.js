@@ -20,7 +20,7 @@ const Login = ({ navigation }) => {
             login: async () => {
                 try {
                     await auth().signInWithEmailAndPassword(email, password)
-                    navigation.navigate('UserInfoScreen')
+                    navigation.navigate('HomeScreen')
                 } catch (error) {
                     console.log(error)
                 }
@@ -32,7 +32,7 @@ const Login = ({ navigation }) => {
             login: async () => {
                 try {
                     await auth().createUserWithEmailAndPassword(email, password)
-                    navigation.navigate('HomeScreen')
+                    navigation.navigate('UserInfoScreen')
                 } catch (error) {
                     console.log(error)
                 }
@@ -84,7 +84,7 @@ const Login = ({ navigation }) => {
         try {
         const { idToken } = await GoogleSignin.signIn();
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        navigation.navigate('HomeScreen')
+        navigation.navigate('UserInfoScreen')
         return auth().signInWithCredential(googleCredential);
             
         } catch (error) {
