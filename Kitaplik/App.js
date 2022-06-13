@@ -11,7 +11,7 @@ import BookDetail from './src/pages/BookDetail/BookDetail';
 import Profile from './src/pages/Profile/Profile';
 import Favourites from './src/pages/Favourites/Favourites';
 import FlashMessage from "react-native-flash-message";
-
+import UserInfo from './src/pages/UserInfo/UserInfo';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -42,8 +42,7 @@ const App = () => {
          tabBarActiveBackgroundColor:'white',
          tabBarStyle:{backgroundColor:'white'},
          tabBarHideOnKeyboard:true  
-    }) }
-      >
+    }) } >
         <Tab.Screen name='Home' component={Home} />
         <Tab.Screen name='Favourites' component={Favourites} />
         <Tab.Screen name='Profile' component={Profile} />
@@ -54,6 +53,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}} >
         <Stack.Screen name='WelcomeScreen' component={Welcome} />
+        <Stack.Screen name='UserInfoScreen' component={UserInfo} />
       <Stack.Screen name='HomeScreen' component={TabStack} />
         <Stack.Screen name='LoginScreen' component={Login} />
         <Stack.Screen name='BookDetailScreen' component={BookDetail} />

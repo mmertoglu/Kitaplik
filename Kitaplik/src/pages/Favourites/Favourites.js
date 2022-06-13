@@ -18,8 +18,13 @@ const Favourites = ({navigation}) => {
     const handleDetail = (book) => {
         navigation.navigate('BookDetailScreen',{book})
     }
+    const removeItem = (book) => {
+        const filtered = favouritesList.filter(x => x!=book)
+        setFavouritesList(filtered)
+    }
 
-    const renderItem = ({item}) => <FavouriteCard book={item} handleDetail={handleDetail} />
+
+    const renderItem = ({item}) => <FavouriteCard book={item} handleDetail={handleDetail} removeItem={removeItem} />
     return(
         <View>
             <Text 

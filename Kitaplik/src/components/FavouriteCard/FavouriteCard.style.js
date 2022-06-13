@@ -7,7 +7,8 @@ export default StyleSheet.create({
         flexDirection:'row',
         padding:5,
         borderRadius:12,
-        elevation:8
+        elevation:8,
+        zIndex:1
     },
     image:{
         width:60,

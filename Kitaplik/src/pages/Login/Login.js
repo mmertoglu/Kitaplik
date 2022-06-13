@@ -20,7 +20,7 @@ const Login = ({ navigation }) => {
             login: async () => {
                 try {
                     await auth().signInWithEmailAndPassword(email, password)
-                    navigation.navigate('HomeScreen')
+                    navigation.navigate('UserInfoScreen')
                 } catch (error) {
                     console.log(error)
                 }
