@@ -21,12 +21,13 @@ const Favourites = ({navigation}) => {
     const removeItem = (book) => {
         const filtered = favouritesList.filter(x => x!=book)
         setFavouritesList(filtered)
+        database().ref('users/'+currentUser+'/Favourites/'+book.id).remove();
     }
 
 
     const renderItem = ({item}) => <FavouriteCard book={item} handleDetail={handleDetail} removeItem={removeItem} />
     return(
-        <View>
+        <View style={{flex:1}} >
             <Text 
             style={{alignSelf:'center',color:'tomato',fontSize:24,marginTop:20,marginBottom:10,fontWeight:'bold'}} 
             >Favourites</Text>
