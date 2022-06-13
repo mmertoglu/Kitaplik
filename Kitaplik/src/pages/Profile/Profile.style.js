@@ -38,6 +38,23 @@ export default StyleSheet.create({
       fontSize:14
     },
     icon_container:{
-      position:'absolute'
+      position:'absolute',
+      top:140,
+      left:90,
+      backgroundColor:'white',
+      borderRadius:80,
+      padding:5
+    },
+    name_text:{
+      color:'black',
+      fontSize:16,
+      fontWeight:'bold',
+      marginLeft:20,
+      marginTop:30
+    },
+    line_container:{
+      height:2,
+      backgroundColor:'#000080',
+      marginTop:10
     }
 })

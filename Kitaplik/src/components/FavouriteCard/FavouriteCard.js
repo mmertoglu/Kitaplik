@@ -44,7 +44,7 @@ const FavouriteCard = ({ book, handleDetail,removeItem }) => {
                 </Animated.View>
             </PanGestureHandler>
             <View style={innerstyles.icon_container} >
-                <FontAwesome5 onPress={() => removeItem(book)}  name='trash-alt' size={30} color='red' />
+                <FontAwesome5 onPress={() => removeItem(book)}  name='trash-alt' size={24} color='red' />
             </View>
         </GestureHandlerRootView>
     )

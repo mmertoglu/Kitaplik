@@ -133,7 +133,7 @@ const Login = ({ navigation }) => {
     return (
         <View style={styles.container} >
             <View style={styles.header_container}>
-                <FontAwesome5 name="book-reader" size={100} color={colors.pink} />
+                <FontAwesome5 name="book-reader" size={100} color={'#000080'}/>
                 <View style={styles.header_inner_container} >
                     <TouchableOpacity onPress={switchPage} >
                         <Text style={styles.login_text}  >Login</Text>
