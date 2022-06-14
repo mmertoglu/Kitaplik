@@ -16,7 +16,8 @@ const UserInfo = ({navigation}) => {
         const userInfo = {
             username : name,
             age:age,
-            image:'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+            image:'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+            coverimage:'https://www.colorhexa.com/ff6347.png'
         }
        await database().ref('users/'+newCurrent+'/userInfo').set(userInfo)
         navigation.navigate('HomeScreen')

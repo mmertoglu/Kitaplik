@@ -56,5 +56,43 @@ export default StyleSheet.create({
       height:2,
       backgroundColor:'#000080',
       marginTop:10
-    }
+    },
+    share_container:{
+      flexDirection:'row',
+      width:'100%',
+      justifyContent:'space-around',
+      padding:10
+    },
+    shares_text:{
+      color:'black',
+      fontWeight:'bold'
+    },
+    dot: {
+      width: 80,
+      height: 10,
+      borderRadius: 10,
+      marginHorizontal: 5,
+      
+      
+    },
+    dotGroup: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+    controls: {
+      position: 'absolute',
+      width: '100%',
+      bottom: 15,
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    
+    },
+    slide: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding:10
+    },
 })
