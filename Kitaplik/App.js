@@ -12,6 +12,7 @@ import Profile from './src/pages/Profile/Profile';
 import Favourites from './src/pages/Favourites/Favourites';
 import FlashMessage from "react-native-flash-message";
 import UserInfo from './src/pages/UserInfo/UserInfo';
+import Social from './src/pages/Social/Social';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +35,9 @@ const App = () => {
             if(route.name==='Favourites') {
               iconName='heart'
             }
+            if(route.name==='Social') {
+              iconName='slideshare'
+            }
             return <FontAwesome name={iconName} color={color} size={24} />
         },
         tabBarActiveTintColor: 'tomato',
@@ -45,6 +49,7 @@ const App = () => {
     }) } >
         <Tab.Screen name='Home' component={Home} />
         <Tab.Screen name='Favourites' component={Favourites} />
+        <Tab.Screen name='Social' component={Social} />
         <Tab.Screen name='Profile' component={Profile} />
       </Tab.Navigator>
     )
