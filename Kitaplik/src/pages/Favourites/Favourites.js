@@ -2,8 +2,8 @@ import React,{useEffect,useState} from "react";
 import {View,Text, TouchableOpacity, FlatList} from 'react-native'
 import auth from '@react-native-firebase/auth'
 import database from '@react-native-firebase/database'
-import ParseContent from '../../utils/ParseContent'
 import FavouriteCard from "../../components/FavouriteCard/FavouriteCard";
+import ParseContent from "../../utils/ParseContent";
 
 const Favourites = ({navigation}) => {
     const [favouritesList,setFavouritesList] = useState([])
