@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import {View,Text,FlatList} from 'react-native'
-
+import colors from '../../../assets/colors'
 const Shares = () =>{
     const [shares,setShares] = useState([])
 
@@ -14,7 +14,7 @@ const Shares = () =>{
     }, [])
 
     return(
-        <View>
+        <View style={{backgroundColor:colors.darkwhite}} >
             <FlatList
             data={shares}
             renderItem={({item}) => <Text>{item.id}</Text>}

@@ -7,15 +7,26 @@ import {launchImageLibrary} from 'react-native-image-picker'
 import ModalComponent from "../../components/ModalComponents/ModalComponent";
 import ParseContent from '../../utils/ParseContent'
 import auth from '@react-native-firebase/auth'
+import Post from "../../components/Post/Post";
 
 const currentUser1 = auth().currentUser.email.split('@',1).toString()
+
 const Social = () => {
     const [currentUser,setCurrentUser] = useState(currentUser1)
+    const newCurrent = currentUser.split('.', 2).toString()
+    const [userData,setUserData] = useState([])
     const [postData,setPostData] = useState([])
     const [postText,setPostText] = useState()
     const [postImage,setPostImage] = useState()
     const [isModalVisible,setIsModalVisible] = useState(false)
 
+   
+        useEffect(() => {
+            database().ref('users/' + newCurrent + '/userInfo/image').on('value', snapshot => {
+                setUserData(snapshot.val())
+                console.log(userData)
+            })
+        }, [])
 
     useEffect(()=>{
         database().ref('Shares').on('value',snapshot => {
@@ -55,13 +66,16 @@ const Social = () => {
             text:postText,
             image:postImage,
             user:currentUser,
-            date: new Date().toISOString()
+            date: new Date().toISOString(),
+            userimage:userData
         }
-        database().ref('Shares/'+postText).set(post)
+        database().ref('Shares/'+Math.floor(Math.random()*1000)).set(post)
         setIsModalVisible(false)
         setPostImage('')
         setPostText('')
     }
+
+    const renderItem = ({item}) => <Post post={item} />
 
     return(
         <View style={styles.container} >
@@ -73,7 +87,7 @@ const Social = () => {
             closeModal={closeModal} isVisible={isModalVisible} />
             <FlatList
             data={postData}
-            renderItem={({item}) => <Text>{item.text}</Text>}
+            renderItem={renderItem}
             />
             <TouchableOpacity 
             onPress={closeModal}
