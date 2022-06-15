@@ -16,8 +16,6 @@ export default StyleSheet.create({
     },
     image_container:{
         flexDirection:'row',
-        
-        alignItems:'center',
     },
     post_image:{
         width:330,
@@ -33,5 +31,13 @@ export default StyleSheet.create({
     post_text:{
         color:'black',
         marginTop:10
+    },
+    datetext:{
+        marginLeft:10,
+        marginRight:4
+    },
+    date_container:{
+        flexDirection:'row',
+        alignItems:'center',
     }
 })
