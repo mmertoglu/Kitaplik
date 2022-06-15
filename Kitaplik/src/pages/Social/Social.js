@@ -24,9 +24,11 @@ const Social = ({navigation}) => {
         useEffect(() => {
             const currentUser = auth().currentUser.email.split('@',1).toString()
             const newCurrent = currentUser.split('.', 2).toString()
-            database().ref('users/' + newCurrent + '/userInfo').on('value', snapshot => {
-            const contentData = snapshot.val();
-            setUserData(contentData)
+            database().ref('users/' + newCurrent).on('value', snapshot => {
+                const contentData = snapshot.val();
+                const newContent = ParseContent(contentData);
+                setUserData(newContent)
+                console.log(userData)
             })
         }, [])
 
@@ -68,17 +70,21 @@ const Social = ({navigation}) => {
         const post = {
             text:postText,
             image:postImage,
-            user:userData.username,
+            user:userData[0].username,
             date: new Date().toISOString(),
-            userimage:userData.image
+            userimage:userData[0].image,
+            userdata:userData
         }
         database().ref('Shares/'+Math.floor(Math.random()*1000)).set(post)
         setIsModalVisible(false)
         setPostImage('')
         setPostText('')
     }
+    const handleProfile = (post) => {
+        navigation.navigate('UserProfileScreen',{post})
+    }
 
-    const renderItem = ({item}) => <Post post={item} />
+    const renderItem = ({item}) => <Post post={item} handleProfile={handleProfile} />
 
     return(
         <View style={styles.container} >

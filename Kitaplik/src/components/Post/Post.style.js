@@ -16,7 +16,8 @@ export default StyleSheet.create({
     },
     image_container:{
         flexDirection:'row',
-        marginLeft:10
+        marginLeft:10,
+        width:220
     },
     post_image:{
         width:360,
