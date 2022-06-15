@@ -14,7 +14,7 @@ const Post = ({post,handleProfile}) => {
             <TouchableOpacity onPress={() => handleProfile(post)} style={styles.image_container} >
             <Image source={{uri:post.userimage}} style={styles.userimage} />
             <View>
-            <Text style={styles.user_text} >{post.user}</Text>
+            <Text style={styles.user_text} >{post.userdata[0].username}</Text>
             <View style={styles.date_container} >
             <Text style={styles.datetext} >{formatteddate}</Text>
             <IonIcons name="earth" color={'gray'} size={16} />
