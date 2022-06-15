@@ -28,17 +28,18 @@ export default StyleSheet.create({
         color:'black',
         fontSize:16,
         fontWeight:'bold',
-        marginLeft:10
+        marginLeft:15
     },
     post_text:{
         color:'black',
-        marginTop:10,
-        marginBottom:10,
+        marginTop:20,
+        marginBottom:20,
         marginLeft:10
     },
     datetext:{
-        marginLeft:10,
-        marginRight:4
+        marginLeft:15,
+        marginRight:4,
+        fontSize:14
     },
     date_container:{
         flexDirection:'row',

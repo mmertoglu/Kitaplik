@@ -26,7 +26,7 @@ const Post = ({post,handleProfile}) => {
             <View style={styles.like_container} >
             <LikeComponent iconName='like' text='Like'  />
             <LikeComponent iconName='comment' text='Comment' />
-            <LikeComponent iconName='share-google' text='share' />
+            <LikeComponent iconName='share-google' text='Share' />
             </View>
         </View>
     )
