@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, Image,StatusBar, ActivityIndicator } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import database from '@react-native-firebase/database'
 import styles from './Social.style'
@@ -12,8 +12,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 const Social = ({ navigation }) => {
-
-
     const [userData, setUserData] = useState(null)
     const [postData, setPostData] = useState([])
     const [postText, setPostText] = useState()
@@ -21,17 +19,19 @@ const Social = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [loading,setLoading] = useState(true)
 
-    
-    useEffect( async () => {
+    useEffect( () => {
         const currentUser = auth().currentUser.email.split('@', 1).toString()
         const newCurrent = currentUser.split('.', 2).toString()
-        await database().ref('users/' + newCurrent).once('value').then(snapshot => {
+        async function fetchData () {
+ await database().ref('users/' + newCurrent).once('value').then(snapshot => {
             const contentData = snapshot.val();
             const newContent = ParseContent(contentData);
             setUserData(newContent)
             console.log(userData)
         })
         setLoading(false)
+        }
+        fetchData()
        
     }, [])
 
@@ -94,13 +94,17 @@ const Social = ({ navigation }) => {
 
     return (
         <View style={styles.container} >
+            <StatusBar backgroundColor='tomato' />
             <ModalComponent
                 image={postImage}
                 sendPost={sendPost}
                 onChangeText={(text) => setPostText(text)}
                 addPhoto={addPhoto}
                 closeModal={closeModal} isVisible={isModalVisible} />
-            <View style={styles.header_container} >
+           { loading ? <ActivityIndicator/> : 
+           <>
+
+           <View style={styles.header_container} >
                 <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', alignItems: 'center' }} >
                     <FontAwesome5 name="book-reader" size={28} color={'white'} />
                     <Text style={styles.header_text} >BookShelter</Text>
@@ -119,7 +123,9 @@ const Social = ({ navigation }) => {
                 style={styles.add_button} >
                 <Octicons name="plus" color={'white'} size={24} />
             </TouchableOpacity>
+            </>}
         </View>
+       
     )
 }
 
