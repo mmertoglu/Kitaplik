@@ -16,11 +16,12 @@ export default StyleSheet.create({
     },
     image_container:{
         flexDirection:'row',
+        marginLeft:10
     },
     post_image:{
-        width:330,
-        height:200,
-        margin:5
+        width:360,
+        height:180,
+        
     },
     user_text:{
         color:'black',
@@ -30,7 +31,9 @@ export default StyleSheet.create({
     },
     post_text:{
         color:'black',
-        marginTop:10
+        marginTop:10,
+        marginBottom:10,
+        marginLeft:10
     },
     datetext:{
         marginLeft:10,
@@ -39,5 +42,11 @@ export default StyleSheet.create({
     date_container:{
         flexDirection:'row',
         alignItems:'center',
+    },
+    like_container:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginHorizontal:20,
+        marginTop:10
     }
 })

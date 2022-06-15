@@ -2,6 +2,7 @@ import React from "react";
 import {View,Text, Image} from 'react-native'
 import styles from './Post.style'
 import { format, formatDistance, formatRelative, parseISO, subDays } from 'date-fns'
+import LikeComponent from "../LikeComponent/LikeComponent";
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
 const Post = ({post}) => {
@@ -21,8 +22,12 @@ const Post = ({post}) => {
             </View>
             </View>
             <Text style={styles.post_text} >{post.text}</Text>
-            <View style={{height:1,backgroundColor:'black'}}></View>
             <Image source={{uri:post.image}} style={styles.post_image} resizeMode='cover' />
+            <View style={styles.like_container} >
+            <LikeComponent iconName='like' text='Like'  />
+            <LikeComponent iconName='comment' text='Comment' />
+            <LikeComponent iconName='share-google' text='share' />
+            </View>
         </View>
     )
 }
