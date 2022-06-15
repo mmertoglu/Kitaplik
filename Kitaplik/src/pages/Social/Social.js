@@ -9,11 +9,11 @@ import ParseContent from '../../utils/ParseContent'
 import auth from '@react-native-firebase/auth'
 import Post from "../../components/Post/Post";
 
-const currentUser1 = auth().currentUser.email.split('@',1).toString()
+
 
 const Social = () => {
-    const [currentUser,setCurrentUser] = useState(currentUser1)
-    const newCurrent = currentUser.split('.', 2).toString()
+    
+   
     const [userData,setUserData] = useState([])
     const [postData,setPostData] = useState([])
     const [postText,setPostText] = useState()
@@ -22,9 +22,11 @@ const Social = () => {
 
    
         useEffect(() => {
-            database().ref('users/' + newCurrent + '/userInfo/image').on('value', snapshot => {
-                setUserData(snapshot.val())
-                console.log(userData)
+            const currentUser = auth().currentUser.email.split('@',1).toString()
+            const newCurrent = currentUser.split('.', 2).toString()
+            database().ref('users/' + newCurrent + '/userInfo').on('value', snapshot => {
+            const contentData = snapshot.val();
+            setUserData(contentData)
             })
         }, [])
 
@@ -33,6 +35,7 @@ const Social = () => {
             const contentData = snapshot.val();
             const newContent = ParseContent(contentData);
             setPostData(newContent)
+            
         })
     },[])
 
@@ -65,9 +68,9 @@ const Social = () => {
         const post = {
             text:postText,
             image:postImage,
-            user:currentUser,
+            user:userData.username,
             date: new Date().toISOString(),
-            userimage:userData
+            userimage:userData.image
         }
         database().ref('Shares/'+Math.floor(Math.random()*1000)).set(post)
         setIsModalVisible(false)

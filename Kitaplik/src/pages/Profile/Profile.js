@@ -11,7 +11,6 @@ import Favourites from '../Favourites/Favourites'
 
 
 const Profile = () => {
-
     const [userData, setUserData] = useState([])
     const [favourites, setFavourites] = useState([])
     const [shares, setShares] = useState([])
@@ -36,6 +35,8 @@ const Profile = () => {
     }, [])
 
     const ChangePhoto = () => {
+        const currentUser = auth().currentUser.email.split('@', 1).toString();
+const newCurrent = currentUser.split('.', 2).toString()
         const options = {
             title: 'Titlee',
             storageOptions: {
@@ -56,6 +57,8 @@ const Profile = () => {
         })
     }
     const ChangeCoverPhoto = () => {
+        const currentUser = auth().currentUser.email.split('@', 1).toString();
+const newCurrent = currentUser.split('.', 2).toString()
         const options = {
             title: 'Titlee',
             storageOptions: {
