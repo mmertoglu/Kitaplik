@@ -24,27 +24,6 @@ export default StyleSheet.create({
       height:120,
       backgroundColor:'tomato'
     },
-    edit_profile_container:{
-      marginTop:20,
-      alignSelf:'flex-end',
-      marginRight:30,
-      borderWidth:1,
-      borderRadius:10,
-      borderColor:'black',
-      padding:8
-    },
-    edit_profile_text:{
-      color:'black',
-      fontSize:14
-    },
-    icon_container:{
-      position:'absolute',
-      top:140,
-      left:90,
-      backgroundColor:'white',
-      borderRadius:80,
-      padding:5
-    },
     name_text:{
       color:'black',
       fontSize:16,
@@ -57,42 +36,11 @@ export default StyleSheet.create({
       backgroundColor:'#000080',
       marginTop:10
     },
-    share_container:{
-      flexDirection:'row',
-      width:'100%',
-      justifyContent:'space-around',
-      padding:10
-    },
-    shares_text:{
-      color:'black',
+    favourites_text:{
+      color:'#000080',
+      alignSelf:'center',
+      fontSize:16,
       fontWeight:'bold'
-    },
-    dot: {
-      width: 80,
-      height: 10,
-      borderRadius: 10,
-      marginHorizontal: 5,
-      
-      
-    },
-    dotGroup: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-    },
-    controls: {
-      position: 'absolute',
-      width: '100%',
-      bottom: 15,
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
+    }
     
-    },
-    slide: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding:10
-    },
 })

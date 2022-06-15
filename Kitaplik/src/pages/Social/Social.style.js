@@ -33,6 +33,12 @@ export default StyleSheet.create({
     user_image:{
         height:30,
         width:30,
-        borderRadius:50
+        borderRadius:50,
+        
+    },
+    image_button:{
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:3
     }
 })
