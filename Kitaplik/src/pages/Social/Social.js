@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import {View,Text, TouchableOpacity,FlatList} from 'react-native'
+import {View,Text, TouchableOpacity,FlatList, Image} from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import database from '@react-native-firebase/database'
 import styles from './Social.style'
@@ -8,10 +8,10 @@ import ModalComponent from "../../components/ModalComponents/ModalComponent";
 import ParseContent from '../../utils/ParseContent'
 import auth from '@react-native-firebase/auth'
 import Post from "../../components/Post/Post";
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
-
-const Social = () => {
+const Social = ({navigation}) => {
     
    
     const [userData,setUserData] = useState([])
@@ -88,6 +88,15 @@ const Social = () => {
             onChangeText={(text) => setPostText(text)}
             addPhoto={addPhoto}
             closeModal={closeModal} isVisible={isModalVisible} />
+            <View style={styles.header_container} >
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}  style={{flexDirection:'row',alignItems:'center'}} >
+            <FontAwesome5 name="book-reader" size={28} color={'white'}/>
+            <Text style={styles.header_text} >BookShelter</Text>  
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')} >
+            <Image source={{uri:userData.image}} style={styles.user_image}  />
+            </TouchableOpacity>
+            </View>
             <FlatList
             data={postData}
             renderItem={renderItem}

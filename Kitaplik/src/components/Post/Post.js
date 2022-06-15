@@ -22,7 +22,7 @@ const Post = ({post}) => {
             </View>
             </View>
             <Text style={styles.post_text} >{post.text}</Text>
-            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='cover' />
+            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='contain' />
             <View style={styles.like_container} >
             <LikeComponent iconName='like' text='Like'  />
             <LikeComponent iconName='comment' text='Comment' />
