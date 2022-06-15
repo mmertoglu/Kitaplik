@@ -1,9 +1,9 @@
-import React,{useState,useEffect} from "react";
-import {View,Text, TouchableOpacity,FlatList, Image} from 'react-native'
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import database from '@react-native-firebase/database'
 import styles from './Social.style'
-import {launchImageLibrary} from 'react-native-image-picker'
+import { launchImageLibrary } from 'react-native-image-picker'
 import ModalComponent from "../../components/ModalComponents/ModalComponent";
 import ParseContent from '../../utils/ParseContent'
 import auth from '@react-native-firebase/auth'
@@ -11,35 +11,39 @@ import Post from "../../components/Post/Post";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
-const Social = ({navigation}) => {
+const Social = ({ navigation }) => {
+
+
+    const [userData, setUserData] = useState(null)
+    const [postData, setPostData] = useState([])
+    const [postText, setPostText] = useState()
+    const [postImage, setPostImage] = useState()
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [loading,setLoading] = useState(true)
+
     
-   
-    const [userData,setUserData] = useState([])
-    const [postData,setPostData] = useState([])
-    const [postText,setPostText] = useState()
-    const [postImage,setPostImage] = useState()
-    const [isModalVisible,setIsModalVisible] = useState(false)
+    useEffect( async () => {
+        const currentUser = auth().currentUser.email.split('@', 1).toString()
+        const newCurrent = currentUser.split('.', 2).toString()
+        await database().ref('users/' + newCurrent).once('value').then(snapshot => {
+            const contentData = snapshot.val();
+            const newContent = ParseContent(contentData);
+            setUserData(newContent)
+            console.log(userData)
+        })
+        setLoading(false)
+       
+    }, [])
 
-   
-        useEffect(() => {
-            const currentUser = auth().currentUser.email.split('@',1).toString()
-            const newCurrent = currentUser.split('.', 2).toString()
-            database().ref('users/' + newCurrent).on('value', snapshot => {
-                const contentData = snapshot.val();
-                const newContent = ParseContent(contentData);
-                setUserData(newContent)
-                console.log(userData)
-            })
-        }, [])
 
-    useEffect(()=>{
-        database().ref('Shares').on('value',snapshot => {
+    useEffect(() => {
+        database().ref('Shares').on('value', snapshot => {
             const contentData = snapshot.val();
             const newContent = ParseContent(contentData);
             setPostData(newContent)
-            
+
         })
-    },[])
+    }, [])
 
     const closeModal = () => {
         setIsModalVisible(!isModalVisible)
@@ -67,50 +71,53 @@ const Social = ({navigation}) => {
     }
 
     const sendPost = () => {
+        const currentUser = auth().currentUser.email.split('@', 1).toString()
+        const newCurrent = currentUser.split('.', 2).toString()
         const post = {
-            text:postText,
-            image:postImage,
-            user:userData[0].username,
+            text: postText,
+            image: postImage,
+            user: newCurrent,
             date: new Date().toISOString(),
-            userimage:userData[0].image,
-            userdata:userData
+            userimage: userData[0].image,
+            userdata: userData
         }
-        database().ref('Shares/'+Math.floor(Math.random()*1000)).set(post)
+        database().ref('Shares/' + Math.floor(Math.random() * 1000)).set(post)
         setIsModalVisible(false)
         setPostImage('')
         setPostText('')
     }
     const handleProfile = (post) => {
-        navigation.navigate('UserProfileScreen',{post})
+        navigation.navigate('UserProfileScreen', { post })
     }
 
-    const renderItem = ({item}) => <Post post={item} handleProfile={handleProfile} />
+    const renderItem = ({ item }) => <Post post={item} handleProfile={handleProfile} />
 
-    return(
+    return (
         <View style={styles.container} >
             <ModalComponent
-            image={postImage}
-            sendPost={sendPost}
-            onChangeText={(text) => setPostText(text)}
-            addPhoto={addPhoto}
-            closeModal={closeModal} isVisible={isModalVisible} />
+                image={postImage}
+                sendPost={sendPost}
+                onChangeText={(text) => setPostText(text)}
+                addPhoto={addPhoto}
+                closeModal={closeModal} isVisible={isModalVisible} />
             <View style={styles.header_container} >
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}  style={{flexDirection:'row',alignItems:'center'}} >
-            <FontAwesome5 name="book-reader" size={28} color={'white'}/>
-            <Text style={styles.header_text} >BookShelter</Text>  
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')} >
-            <Image source={{uri:userData.image}} style={styles.user_image}  />
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', alignItems: 'center' }} >
+                    <FontAwesome5 name="book-reader" size={28} color={'white'} />
+                    <Text style={styles.header_text} >BookShelter</Text>
+                </TouchableOpacity>
+                {loading ? null :
+                <TouchableOpacity style={styles.image_button} onPress={() => navigation.navigate('Profile')} >
+                <Image source={{ uri: userData[0].image }} style={styles.user_image} />
+                </TouchableOpacity>}
             </View>
             <FlatList
-            data={postData}
-            renderItem={renderItem}
+                data={postData}
+                renderItem={renderItem}
             />
-            <TouchableOpacity 
-            onPress={closeModal}
-            style={styles.add_button} >
-            <Octicons name="plus" color={'white'} size={24} />
+            <TouchableOpacity
+                onPress={closeModal}
+                style={styles.add_button} >
+                <Octicons name="plus" color={'white'} size={24} />
             </TouchableOpacity>
         </View>
     )
