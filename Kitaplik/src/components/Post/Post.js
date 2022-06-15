@@ -22,7 +22,7 @@ const Post = ({post,handleProfile}) => {
             </View>
             </TouchableOpacity>
             <Text style={styles.post_text} >{post.text}</Text>
-            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='contain' />
+            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='cover' />
             <View style={styles.like_container} >
             <LikeComponent iconName='like' text='Like'  />
             <LikeComponent iconName='comment' text='Comment' />
