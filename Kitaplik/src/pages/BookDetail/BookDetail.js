@@ -31,7 +31,6 @@ const BookDetail = ({route,navigation}) => {
         })
        }
     }
-    console.log(book.volumeInfo.id)
 
     return(
         <View style={styles.container}>

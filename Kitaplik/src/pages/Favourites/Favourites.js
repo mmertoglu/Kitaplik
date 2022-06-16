@@ -22,7 +22,7 @@ const Favourites = ({navigation}) => {
     const removeItem = (book) => {
         const filtered = favouritesList.filter(x => x!=book)
         setFavouritesList(filtered)
-        database().ref('users/'+currentUser+'/Favourites/'+book.id).remove();
+        database().ref('users/'+newCurrent+'/Favourites/'+book.id).remove();
     }
 
 
