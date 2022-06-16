@@ -65,32 +65,11 @@ const Home = ({navigation}) => {
     const goBookDetail = (book) => {
         navigation.navigate('BookDetailScreen',{book})
     }
-    const cikisyap = async () => {
-     try {
-        const currentUser = auth().currentUser
-        if (currentUser) {
-           await auth().signOut();
-            navigation.navigate('LoginScreen')
-        }
-        else {
-            await GoogleSignin.signOut();
-            navigation.navigate('LoginScreen')
-
-        }
-       
-        
-        
-     } catch (error) {
-        console.log(error)
-     }
-    }
+   
 
     const renderItem = ({ item }) => <BookCard book={item} handleDetail={goBookDetail} />
     return (
         <ScrollView style={styles.container} >
-             <TouchableOpacity onPress={cikisyap} style={{backgroundColor:'yellow'}}>
-                <Text>Çıkış Yap</Text>
-            </TouchableOpacity>
             <StatusBar backgroundColor={colors.darkwhite} />
             <Text style={styles.header_text} >Bookshelter</Text>
             <View style={styles.input_container} >

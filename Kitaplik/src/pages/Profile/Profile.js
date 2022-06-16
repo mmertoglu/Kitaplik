@@ -7,13 +7,16 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ParseContent from "../../utils/ParseContent";
 import Favourites from '../Favourites/Favourites'
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 
 
-const Profile = () => {
+
+const Profile = ({navigation}) => {
     const [userData, setUserData] = useState([])
     const [favourites, setFavourites] = useState([])
     const [shares, setShares] = useState([])
+
 
     useEffect(() => {
         const currentUser = auth().currentUser.email.split('@', 1).toString();
@@ -34,9 +37,25 @@ const Profile = () => {
         })
     }, [])
 
+    const handleSignOut = async () => {
+        try {
+            const currentUser = auth().currentUser
+            if (currentUser) {
+                await auth().signOut();
+                navigation.navigate('LoginScreen')
+            }
+            else {
+                await GoogleSignin.signOut();
+                navigation.navigate('LoginScreen')
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const ChangePhoto = () => {
         const currentUser = auth().currentUser.email.split('@', 1).toString();
-const newCurrent = currentUser.split('.', 2).toString()
+        const newCurrent = currentUser.split('.', 2).toString()
         const options = {
             title: 'Titlee',
             storageOptions: {
@@ -58,7 +77,7 @@ const newCurrent = currentUser.split('.', 2).toString()
     }
     const ChangeCoverPhoto = () => {
         const currentUser = auth().currentUser.email.split('@', 1).toString();
-const newCurrent = currentUser.split('.', 2).toString()
+        const newCurrent = currentUser.split('.', 2).toString()
         const options = {
             title: 'Titlee',
             storageOptions: {
@@ -84,9 +103,12 @@ const newCurrent = currentUser.split('.', 2).toString()
             <ImageBackground
                 source={{ uri: userData.coverimage }}
                 style={styles.header_container} >
+                <View style={styles.logout_container} >
+                    <MaterialIcons name="logout" color={'black'} size={24} onPress={handleSignOut} />
+                </View>
                 <MaterialIcons
                     onPress={ChangeCoverPhoto}
-                    name="add-a-photo" size={24} color='white' style={{ position: 'absolute', right: 30, top: 50 }} />
+                    name="add-a-photo" size={24} color='white' style={{ position: 'absolute', right: 30, bottom: 10 }} />
             </ImageBackground>
             <Image source={{ uri: userData.image && userData.image }}
                 style={styles.image} />

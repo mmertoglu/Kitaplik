@@ -95,4 +95,12 @@ export default StyleSheet.create({
       justifyContent: 'center',
       padding:10
     },
+    logout_container:{
+      position:'absolute',
+      right:20,
+      top:10,
+      backgroundColor:'white',
+      borderRadius:20,
+      padding:5
+    }
 })
