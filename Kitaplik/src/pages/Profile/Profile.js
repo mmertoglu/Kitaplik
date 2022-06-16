@@ -10,13 +10,9 @@ import Favourites from '../Favourites/Favourites'
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 
-
-
 const Profile = ({navigation}) => {
     const [userData, setUserData] = useState([])
     const [favourites, setFavourites] = useState([])
-    const [shares, setShares] = useState([])
-
 
     useEffect(() => {
         const currentUser = auth().currentUser.email.split('@', 1).toString();
