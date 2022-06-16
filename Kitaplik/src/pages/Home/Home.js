@@ -7,6 +7,7 @@ import axios from 'axios'
 import BookCard from "../../components/BookCard/BookCard";
 import SearchedBookCard from "../../components/SearchedBookCard/SearchedBookCard";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import auth from '@react-native-firebase/auth'
 
 const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psychology&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
@@ -64,9 +65,24 @@ const Home = ({navigation}) => {
     const goBookDetail = (book) => {
         navigation.navigate('BookDetailScreen',{book})
     }
-    const cikisyap = () => {
-        GoogleSignin.signOut();
-        navigation.navigate('LoginScreen')
+    const cikisyap = async () => {
+     try {
+        const currentUser = auth().currentUser
+        if (currentUser) {
+           await auth().signOut();
+            navigation.navigate('LoginScreen')
+        }
+        else {
+            await GoogleSignin.signOut();
+            navigation.navigate('LoginScreen')
+
+        }
+       
+        
+        
+     } catch (error) {
+        console.log(error)
+     }
     }
 
     const renderItem = ({ item }) => <BookCard book={item} handleDetail={goBookDetail} />
