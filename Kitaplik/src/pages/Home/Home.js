@@ -35,10 +35,11 @@ const Home = ({ navigation }) => {
             await axios.get(History).then((response) => {
                 setHistoryData(response.data)
             })
-            await axios.get(Psychology).then((response) => {
+              setLoading(false)
+             axios.get(Psychology).then((response) => {
                 setPsychologyData(response.data)
             })
-            setLoading(false)
+            
         }
         fetchdata()
     }, [])
