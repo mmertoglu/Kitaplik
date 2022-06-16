@@ -50,5 +50,24 @@ export default StyleSheet.create({
         justifyContent:'space-between',
         marginHorizontal:20,
         marginTop:10
+    },
+    like_count_container:{
+        flexDirection:'row'
+    },
+    stat_count_container:{
+        flexDirection:'row',
+        marginTop:10,
+        marginHorizontal:20,
+        justifyContent:'space-between'
+    },
+    line_container:{
+        backgroundColor:'black',
+        height:0.5,
+        marginTop:20
+    },
+    like_count_text:{
+        color:'black',
+        marginLeft:5,
+        fontSize:14
     }
 })

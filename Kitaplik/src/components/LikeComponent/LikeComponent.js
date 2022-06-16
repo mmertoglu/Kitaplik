@@ -1,14 +1,14 @@
 import React from "react";
-import {View,Text} from 'react-native'
+import { TouchableOpacity,Text} from 'react-native'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 
-const LikeComponent = ({iconName,text}) => {
+const LikeComponent = ({iconName,text,onPress}) => {
     return(
-        <View style={{flexDirection:'row'}} >
+        <TouchableOpacity style={{flexDirection:'row'}} onPress={onPress} >
         <EvilIcons name={iconName} size={24} color='gray' />
         <Text>{text}</Text>
-        </View>
+        </TouchableOpacity>
         
     )
 }

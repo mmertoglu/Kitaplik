@@ -32,7 +32,6 @@ const Social = ({ navigation }) => {
         setLoading(false)
         }
         fetchData()
-       
     }, [])
 
 
@@ -41,7 +40,6 @@ const Social = ({ navigation }) => {
             const contentData = snapshot.val();
             const newContent = ParseContent(contentData);
             setPostData(newContent)
-
         })
     }, [])
 
@@ -79,7 +77,8 @@ const Social = ({ navigation }) => {
             user: newCurrent,
             date: new Date().toISOString(),
             userimage: userData[0].image,
-            userdata: userData
+            userdata: userData,
+            like:0
         }
         database().ref('Shares/' + Math.floor(Math.random() * 1000)).set(post)
         setIsModalVisible(false)
@@ -89,8 +88,12 @@ const Social = ({ navigation }) => {
     const handleProfile = (post) => {
         navigation.navigate('UserProfileScreen', { post })
     }
+    const handleLike = (post) => {
+        console.log(post.id)
+        database().ref('Shares/'+post.id+'/like').set(post.like+1)
+    }
 
-    const renderItem = ({ item }) => <Post post={item} handleProfile={handleProfile} />
+    const renderItem = ({ item }) => <Post post={item} handleProfile={handleProfile} handleLike={handleLike} />
 
     return (
         <View style={styles.container} >
