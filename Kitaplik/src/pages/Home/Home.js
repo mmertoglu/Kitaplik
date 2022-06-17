@@ -9,10 +9,10 @@ import SearchedBookCard from "../../components/SearchedBookCard/SearchedBookCard
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth'
 
-const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psychology&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
-const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
-const Philosophy = 'https://www.googleapis.com/books/v1/volumes?q=subject:philosophy&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
-const History = 'https://www.googleapis.com/books/v1/volumes?q=subject:history&maxResults=40&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
+const Psychology = 'https://www.googleapis.com/books/v1/volumes?q=subject:psychology&maxResults=20&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
+const Political = 'https://www.googleapis.com/books/v1/volumes?q=subject:political&maxResults=20&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
+const Philosophy = 'https://www.googleapis.com/books/v1/volumes?q=subject:philosophy&maxResults=20&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
+const History = 'https://www.googleapis.com/books/v1/volumes?q=subject:history&maxResults=20&key=AIzaSyCwKBtsbYyjTxHZkxgAI5tgFRLOrvd2WLk'
 const Home = ({ navigation }) => {
     const [loading, setLoading] = useState(true)
     const [politicalData, setPoliticalData] = useState([])
@@ -49,7 +49,7 @@ const Home = ({ navigation }) => {
             await setSearch(text)
             axios.get(result).then((response) => {
                 setResultData(response.data)
-                console.log(resultData)
+            
             })
 
             const filtered = resultData.filter((book) => {

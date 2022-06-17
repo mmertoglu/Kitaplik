@@ -2,7 +2,6 @@ import React, { useState, createRef } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList, useWindowDimensions, Image } from 'react-native'
 import styles from './Login.style'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import colors from "../../../assets/colors";
 import auth from '@react-native-firebase/auth'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {showMessage} from 'react-native-flash-message'
@@ -61,6 +60,8 @@ const Login = ({ navigation }) => {
                       message:ErrorMessages(error.code),
                       type:'danger'
                     })
+
+                    console.log(error.code)
                   }
             }
         },
@@ -129,6 +130,7 @@ const Login = ({ navigation }) => {
             />
             <Text style={[styles.email_text, { marginTop: 20 }]} >Password</Text>
             <TextInput
+                secureTextEntry
                 placeholder="your password..."
                 placeholderTextColor='black'
                 style={styles.input}

@@ -23,7 +23,7 @@ const Post = ({post,handleProfile,handleLike}) => {
             </View>
             </TouchableOpacity>
             <Text style={styles.post_text} >{post.text}</Text>
-            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='cover' />
+            <Image source={{uri:post.image}} style={styles.post_image} resizeMode='contain' />
             {post.like > 0 ? <View style={styles.stat_count_container}>
             <View style={styles.like_count_container} >
             <Fontisto name="like" color={'blue'} size={18} />

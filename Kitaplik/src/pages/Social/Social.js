@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, FlatList, Image,StatusBar, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, Image, StatusBar, ActivityIndicator } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import database from '@react-native-firebase/database'
 import styles from './Social.style'
@@ -17,19 +17,19 @@ const Social = ({ navigation }) => {
     const [postText, setPostText] = useState()
     const [postImage, setPostImage] = useState()
     const [isModalVisible, setIsModalVisible] = useState(false)
-    const [loading,setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
-    useEffect( () => {
+    useEffect(() => {
         const currentUser = auth().currentUser.email.split('@', 1).toString()
         const newCurrent = currentUser.split('.', 2).toString()
-        async function fetchData () {
- await database().ref('users/' + newCurrent).once('value').then(snapshot => {
-            const contentData = snapshot.val();
-            const newContent = ParseContent(contentData);
-            setUserData(newContent)
-            console.log(userData)
-        })
-        setLoading(false)
+        async function fetchData() {
+            await database().ref('users/' + newCurrent).once('value').then(snapshot => {
+                const contentData = snapshot.val();
+                const newContent = ParseContent(contentData);
+                setUserData(newContent)
+                console.log(userData)
+            })
+            setLoading(false)
         }
         fetchData()
     }, [])
@@ -78,7 +78,7 @@ const Social = ({ navigation }) => {
             date: new Date().toISOString(),
             userimage: userData[0].image,
             userdata: userData,
-            like:0
+            like: 0
         }
         database().ref('Shares/' + Math.floor(Math.random() * 1000)).set(post)
         setIsModalVisible(false)
@@ -90,7 +90,7 @@ const Social = ({ navigation }) => {
     }
     const handleLike = (post) => {
         console.log(post.id)
-        database().ref('Shares/'+post.id+'/like').set(post.like+1)
+        database().ref('Shares/' + post.id + '/like').set(post.like + 1)
     }
 
     const renderItem = ({ item }) => <Post post={item} handleProfile={handleProfile} handleLike={handleLike} />
@@ -104,31 +104,31 @@ const Social = ({ navigation }) => {
                 onChangeText={(text) => setPostText(text)}
                 addPhoto={addPhoto}
                 closeModal={closeModal} isVisible={isModalVisible} />
-           { loading ? <ActivityIndicator/> : 
-           <>
+            {loading ? <ActivityIndicator /> :
+                <>
 
-           <View style={styles.header_container} >
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', alignItems: 'center' }} >
-                    <FontAwesome5 name="book-reader" size={28} color={'white'} />
-                    <Text style={styles.header_text} >BookShelter</Text>
-                </TouchableOpacity>
-                {loading ? null :
-                <TouchableOpacity style={styles.image_button} onPress={() => navigation.navigate('Profile')} >
-                <Image source={{ uri: userData[0].image }} style={styles.user_image} />
-                </TouchableOpacity>}
-            </View>
-            <FlatList
-                data={postData}
-                renderItem={renderItem}
-            />
-            <TouchableOpacity
-                onPress={closeModal}
-                style={styles.add_button} >
-                <Octicons name="plus" color={'white'} size={24} />
-            </TouchableOpacity>
-            </>}
+                    <View style={styles.header_container} >
+                        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', alignItems: 'center' }} >
+                            <FontAwesome5 name="book-reader" size={28} color={'white'} />
+                            <Text style={styles.header_text} >BookShelter</Text>
+                        </TouchableOpacity>
+                        {loading ? null :
+                            <TouchableOpacity style={styles.image_button} onPress={() => navigation.navigate('Profile')} >
+                                <Image source={{ uri: userData[0].image }} style={styles.user_image} />
+                            </TouchableOpacity>}
+                    </View>
+                    <FlatList
+                        data={postData}
+                        renderItem={renderItem}
+                    />
+                    <TouchableOpacity
+                        onPress={closeModal}
+                        style={styles.add_button} >
+                        <Octicons name="plus" color={'white'} size={24} />
+                    </TouchableOpacity>
+                </>}
         </View>
-       
+
     )
 }
 
