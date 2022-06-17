@@ -20,14 +20,17 @@ const Login = ({ navigation }) => {
             button_text: 'Login',
             login: async () => {
                 try {
-                    if (email||password =='') {
+                    if (email||password!='') {
+                        await auth().signInWithEmailAndPassword(email, password)
+                        navigation.navigate('HomeScreen')
+                        
+                        console.log(email)
+                        console.log(password)
+                    } else {
                         showMessage({
                             message:'Email or password can not be null',
                             type:'danger'
                         })
-                    } else {
-                        await auth().signInWithEmailAndPassword(email, password)
-                        navigation.navigate('HomeScreen')
                     }
                 } catch (error) {
                     console.log(error)
@@ -40,14 +43,15 @@ const Login = ({ navigation }) => {
             button_text: 'Sign-up',
             login: async () => {
                 try {
-                    if (email||password =='') {
+                    if (email||password !='') {
+                        await auth().createUserWithEmailAndPassword(email, password)
+                    navigation.navigate('UserInfoScreen')
+                       
+                    } else {
                         showMessage({
                             message:'Email or password can not be null',
                             type:'danger'
                         })
-                    } else {
-                    await auth().createUserWithEmailAndPassword(email, password)
-                    navigation.navigate('UserInfoScreen')
                     }
                 } catch (error) {
                     console.log(error)
