@@ -6,7 +6,7 @@ import colors from "../../../assets/colors";
 import auth from '@react-native-firebase/auth'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {showMessage} from 'react-native-flash-message'
-import { el } from "date-fns/locale";
+import ErrorMessages from "../../utils/ErrorMessages/ErrorMessages";
 
 const Login = ({ navigation }) => {
 
@@ -33,7 +33,10 @@ const Login = ({ navigation }) => {
                         })
                     }
                 } catch (error) {
-                    console.log(error)
+                  showMessage({
+                    message:ErrorMessages(error.code),
+                    type:'danger'
+                  })
                 }
             }
         },
