@@ -36,7 +36,7 @@ const Favourites = ({ navigation }) => {
     const renderItem = ({ item }) => <FavouriteCard book={item} handleDetail={handleDetail} removeItem={removeItem} />
     return (
         <View style={{ flex: 1 }} >
-            <Text style={{ color: '#000080', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }} >Favourites</Text>
+            <Text style={{ color: '#000080', alignSelf: 'center', fontSize: 16, fontWeight: 'bold',marginBottom:20,marginTop:20 }} >Favourite Books</Text>
             {loading ? <ActivityIndicator size={'large'} /> :
             <FlatList
                 data={favouritesList}

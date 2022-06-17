@@ -40,7 +40,17 @@ export default StyleSheet.create({
       color:'#000080',
       alignSelf:'center',
       fontSize:16,
-      fontWeight:'bold'
-    }
+      fontWeight:'bold',
+      marginTop:20,
+      marginBottom:20
+    },
+    icon_container:{
+      backgroundColor:'white',
+      position:'absolute',
+      top:15,
+      zIndex:1,
+      left:15,
+      borderRadius:50
+  }
     
 })
