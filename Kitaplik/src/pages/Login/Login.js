@@ -5,7 +5,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import colors from "../../../assets/colors";
 import auth from '@react-native-firebase/auth'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import {showMessage} from 'react-native-flash-message'
+import { el } from "date-fns/locale";
 
 const Login = ({ navigation }) => {
 
@@ -19,20 +20,35 @@ const Login = ({ navigation }) => {
             button_text: 'Login',
             login: async () => {
                 try {
-                    await auth().signInWithEmailAndPassword(email, password)
-                    navigation.navigate('HomeScreen')
+                    if (email||password =='') {
+                        showMessage({
+                            message:'Email or password can not be null',
+                            type:'danger'
+                        })
+                    } else {
+                        await auth().signInWithEmailAndPassword(email, password)
+                        navigation.navigate('HomeScreen')
+                    }
                 } catch (error) {
                     console.log(error)
                 }
             }
         },
+        
         {
             page: 2,
             button_text: 'Sign-up',
             login: async () => {
                 try {
+                    if (email||password =='') {
+                        showMessage({
+                            message:'Email or password can not be null',
+                            type:'danger'
+                        })
+                    } else {
                     await auth().createUserWithEmailAndPassword(email, password)
                     navigation.navigate('UserInfoScreen')
+                    }
                 } catch (error) {
                     console.log(error)
                 }
