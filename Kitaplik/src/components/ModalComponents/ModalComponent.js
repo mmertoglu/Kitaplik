@@ -29,7 +29,7 @@ const ModalComponent = ({isVisible,closeModal,addPhoto,onChangeText,sendPost,ima
                 placeholder="What's going on?"
                 onChangeText={onChangeText}
                 />
-                <Image style={image ? styles.post_image : null}  source={{uri:image}} />
+                <Image style={image ? styles.post_image : null}  source={{uri:image}} resizeMode='contain' />
                 <View style={styles.image_picker_container} >
                     <FontAwesome5 onPress={addPhoto} name="image" size={24} color='black' />
                     <MaterialCommunityIcons name="file-gif-box" size={30} color='black' />
